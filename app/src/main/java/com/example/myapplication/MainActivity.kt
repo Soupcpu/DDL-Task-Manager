@@ -38,9 +38,21 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
+        // FAB点击事件
         binding.fab.setOnClickListener { view ->
-            val navController = findNavController(R.id.nav_host_fragment_content_main)
             navController.navigate(R.id.action_FirstFragment_to_SecondFragment)
+        }
+
+        // 监听导航变化，控制FAB显示/隐藏
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.FirstFragment -> {
+                    binding.fab.show()
+                }
+                R.id.SecondFragment -> {
+                    binding.fab.hide()
+                }
+            }
         }
     }
 

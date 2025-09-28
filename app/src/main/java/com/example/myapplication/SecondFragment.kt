@@ -27,7 +27,9 @@ class SecondFragment : Fragment() {
     private var _binding: FragmentSecondBinding? = null
     private val binding get() = _binding!!
 
-    private val taskId: Long by lazy { arguments?.getLong("taskId", -1L) ?: -1L }
+    private val taskId: Long by lazy {
+        arguments?.getLong("taskId", -1L) ?: -1L
+    }
     private val taskViewModel: TaskViewModel by viewModels()
 
     private var selectedDateTime: Calendar = Calendar.getInstance().apply {
@@ -87,6 +89,9 @@ class SecondFragment : Fragment() {
             if (task != null) {
                 currentTask = task
                 populateTaskData(task)
+            } else {
+                // 任务不存在，返回主页面
+                findNavController().navigateUp()
             }
         }
     }

@@ -47,6 +47,9 @@ class TaskViewModel(application: Application) : AndroidViewModel(application) {
 
     fun getTaskByIdAsync(id: Long, callback: (Task?) -> Unit) = viewModelScope.launch {
         val task = repository.getTaskById(id)
-        callback(task)
+        // 使用Dispatchers.Main确保回调在主线程执行
+        kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.Main) {
+            callback(task)
+        }
     }
 }
