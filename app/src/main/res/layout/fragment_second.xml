@@ -50,14 +50,6 @@
                     android:textStyle="bold"
                     android:fontFamily="sans-serif-medium" />
 
-                <TextView
-                    android:id="@+id/tvPageSubtitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="快速设置任务信息"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -68,7 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            android:hint="任务标题"
+            android:hint="输入任务标题"
             app:boxBackgroundMode="filled"
             app:boxBackgroundColor="@color/white"
             app:boxStrokeColor="@color/primary_color"
@@ -92,36 +84,6 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- 任务描述 -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:hint="任务描述（可选）"
-            app:boxBackgroundMode="filled"
-            app:boxBackgroundColor="@color/white"
-            app:boxStrokeColor="@color/primary_color"
-            app:boxStrokeWidth="2dp"
-            app:boxCornerRadiusBottomEnd="16dp"
-            app:boxCornerRadiusBottomStart="16dp"
-            app:boxCornerRadiusTopEnd="16dp"
-            app:boxCornerRadiusTopStart="16dp"
-            app:hintTextColor="@color/text_secondary"
-            app:startIconDrawable="@drawable/ic_description"
-            app:startIconTint="@color/primary_color">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etTaskDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
-                android:textSize="14sp"
-                android:textColor="@color/text_primary"
-                android:minLines="2"
-                android:maxLines="4"
-                android:imeOptions="actionDone" />
-
-        </com.google.android.material.textfield.TextInputLayout>
 
         <!-- 截止时间选择 -->
         <TextView
@@ -129,12 +91,9 @@
             android:layout_height="wrap_content"
             android:text="截止时间"
             android:textColor="@color/text_primary"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold"
-            android:layout_marginBottom="12dp"
-            android:drawableStart="@drawable/ic_schedule"
-            android:drawablePadding="8dp"
-            app:drawableTint="@color/primary_color" />
+            android:layout_marginBottom="8dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -228,18 +187,15 @@
 
         </LinearLayout>
 
-        <!-- 优先级选择 -->
+        <!-- 简化的优先级选择 -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="优先级"
             android:textColor="@color/text_primary"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold"
-            android:layout_marginBottom="12dp"
-            android:drawableStart="@drawable/ic_priority_high"
-            android:drawablePadding="8dp"
-            app:drawableTint="@color/primary_color" />
+            android:layout_marginBottom="8dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -250,147 +206,39 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnPriorityLow"
                 android:layout_width="0dp"
-                android:layout_height="48dp"
+                android:layout_height="40dp"
                 android:layout_weight="1"
-                android:layout_marginEnd="6dp"
+                android:layout_marginEnd="4dp"
                 android:text="低"
-                android:textSize="14sp"
-                app:cornerRadius="24dp"
-                app:icon="@drawable/ic_priority_low"
-                app:iconSize="16dp"
+                android:textSize="12sp"
+                app:cornerRadius="20dp"
                 style="@style/Widget.Material3.Button.OutlinedButton" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnPriorityMedium"
                 android:layout_width="0dp"
-                android:layout_height="48dp"
+                android:layout_height="40dp"
                 android:layout_weight="1"
-                android:layout_marginHorizontal="6dp"
+                android:layout_marginHorizontal="4dp"
                 android:text="中"
-                android:textSize="14sp"
-                app:cornerRadius="24dp"
-                app:icon="@drawable/ic_priority_medium"
-                app:iconSize="16dp"
+                android:textSize="12sp"
+                app:cornerRadius="20dp"
                 style="@style/Widget.Material3.Button.OutlinedButton" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnPriorityHigh"
                 android:layout_width="0dp"
-                android:layout_height="48dp"
+                android:layout_height="40dp"
                 android:layout_weight="1"
-                android:layout_marginHorizontal="6dp"
+                android:layout_marginStart="4dp"
                 android:text="高"
-                android:textSize="14sp"
-                app:cornerRadius="24dp"
-                app:icon="@drawable/ic_priority_high"
-                app:iconSize="16dp"
-                style="@style/Widget.Material3.Button.OutlinedButton" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnPriorityUrgent"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:layout_marginStart="6dp"
-                android:text="紧急"
-                android:textSize="14sp"
-                app:cornerRadius="24dp"
-                app:icon="@drawable/ic_priority_urgent"
-                app:iconSize="16dp"
+                android:textSize="12sp"
+                app:cornerRadius="20dp"
                 style="@style/Widget.Material3.Button.OutlinedButton" />
 
         </LinearLayout>
 
-        <!-- 分类 -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:hint="分类（如：工作、学习、生活）"
-            app:boxBackgroundMode="filled"
-            app:boxBackgroundColor="@color/white"
-            app:boxStrokeColor="@color/primary_color"
-            app:boxStrokeWidth="2dp"
-            app:boxCornerRadiusBottomEnd="16dp"
-            app:boxCornerRadiusBottomStart="16dp"
-            app:boxCornerRadiusTopEnd="16dp"
-            app:boxCornerRadiusTopStart="16dp"
-            app:hintTextColor="@color/text_secondary"
-            app:startIconDrawable="@drawable/ic_category"
-            app:startIconTint="@color/primary_color">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etCategory"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:textSize="14sp"
-                android:textColor="@color/text_primary"
-                android:maxLines="1"
-                android:text="其他" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <!-- 提醒开关 -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="2dp"
-            app:cardBackgroundColor="@color/white"
-            app:strokeColor="@color/card_stroke_light"
-            app:strokeWidth="1dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:padding="20dp">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginEnd="16dp"
-                    android:src="@drawable/ic_notification"
-                    app:tint="@color/primary_color" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="启用提醒"
-                        android:textColor="@color/text_primary"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:text="截止时间前发送通知"
-                        android:textColor="@color/text_secondary"
-                        android:textSize="12sp" />
-
-                </LinearLayout>
-
-                <com.google.android.material.switchmaterial.SwitchMaterial
-                    android:id="@+id/switchReminder"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    app:thumbTint="@color/white"
-                    app:trackTint="@color/primary_color" />
-
-            </LinearLayout>
-
-        </com.google.android.material.card.MaterialCardView>
 
         <!-- 底部按钮 -->
         <LinearLayout

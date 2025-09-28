@@ -12,7 +12,7 @@ class TaskRepository(private val taskDao: TaskDao) {
 
     fun getCompletedTasks(): LiveData<List<Task>> = taskDao.getCompletedTasks()
 
-    fun getTaskById(id: Long): Task? = taskDao.getTaskById(id)
+    suspend fun getTaskById(id: Long): Task? = taskDao.getTaskById(id)
 
     suspend fun insertTask(task: Task): Long = taskDao.insertTask(task)
 

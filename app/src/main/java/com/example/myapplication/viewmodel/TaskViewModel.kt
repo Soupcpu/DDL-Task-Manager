@@ -45,7 +45,8 @@ class TaskViewModel(application: Application) : AndroidViewModel(application) {
         repository.deleteCompletedTasks()
     }
 
-    fun getTaskById(id: Long): Task? {
-        return repository.getTaskById(id)
+    fun getTaskByIdAsync(id: Long, callback: (Task?) -> Unit) = viewModelScope.launch {
+        val task = repository.getTaskById(id)
+        callback(task)
     }
 }

@@ -44,8 +44,7 @@ class SecondFragment : Fragment() {
         listOf(
             binding.btnPriorityLow,
             binding.btnPriorityMedium,
-            binding.btnPriorityHigh,
-            binding.btnPriorityUrgent
+            binding.btnPriorityHigh
         )
     }
 
@@ -77,29 +76,23 @@ class SecondFragment : Fragment() {
 
     private fun setupForNewTask() {
         binding.tvPageTitle.text = "新建任务"
-        binding.tvPageSubtitle.text = "设置任务的详细信息和截止时间"
         currentTask = null
     }
 
     private fun loadTaskForEditing(taskId: Long) {
         binding.tvPageTitle.text = "编辑任务"
-        binding.tvPageSubtitle.text = "修改任务信息和设置"
 
-        // 这里需要从数据库获取任务，简化处理
-        // 在实际应用中，你需要在TaskViewModel中添加获取单个任务的LiveData方法
-        val task = taskViewModel.getTaskById(taskId)
-        if (task != null) {
-            currentTask = task
-            populateTaskData(task)
+        // 使用异步方式获取任务数据
+        taskViewModel.getTaskByIdAsync(taskId) { task ->
+            if (task != null) {
+                currentTask = task
+                populateTaskData(task)
+            }
         }
     }
 
     private fun populateTaskData(task: Task) {
         binding.etTaskTitle.setText(task.title)
-        binding.etTaskDescription.setText(task.description)
-        binding.etCategory.setText(task.category)
-        binding.switchReminder.isChecked = task.reminderEnabled
-
         selectedDateTime.time = task.dueDate
         selectedPriority = task.priority
 
@@ -108,7 +101,7 @@ class SecondFragment : Fragment() {
     }
 
     private fun setupPriorityButtons() {
-        val priorities = Priority.values()
+        val priorities = listOf(Priority.LOW, Priority.MEDIUM, Priority.HIGH)
 
         priorityButtons.forEachIndexed { index, button ->
             button.setOnClickListener {
@@ -117,13 +110,14 @@ class SecondFragment : Fragment() {
             }
         }
 
-        // 设置默认选中
         updatePrioritySelection()
     }
 
     private fun updatePrioritySelection() {
+        val priorities = listOf(Priority.LOW, Priority.MEDIUM, Priority.HIGH)
+
         priorityButtons.forEachIndexed { index, button ->
-            val isSelected = Priority.values()[index] == selectedPriority
+            val isSelected = priorities[index] == selectedPriority
 
             if (isSelected) {
                 button.setBackgroundColor(ContextCompat.getColor(requireContext(),
@@ -177,8 +171,6 @@ class SecondFragment : Fragment() {
         val hideKeyboardAndClearFocus = {
             KeyboardUtils.hideKeyboard(this)
             binding.etTaskTitle.clearFocus()
-            binding.etTaskDescription.clearFocus()
-            binding.etCategory.clearFocus()
         }
 
         // 设置根视图点击监听
@@ -186,16 +178,6 @@ class SecondFragment : Fragment() {
             hideKeyboardAndClearFocus()
         }
 
-        // 为描述输入框设置IME监听
-        binding.etTaskDescription.setOnEditorActionListener { _, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
-                KeyboardUtils.hideKeyboard(this)
-                binding.etTaskDescription.clearFocus()
-                true
-            } else {
-                false
-            }
-        }
 
         // 为优先级按钮添加键盘隐藏
         priorityButtons.forEach { button ->
@@ -240,8 +222,6 @@ class SecondFragment : Fragment() {
 
     private fun saveTask() {
         val title = binding.etTaskTitle.text.toString().trim()
-        val description = binding.etTaskDescription.text.toString().trim()
-        val category = binding.etCategory.text.toString().trim()
 
         if (title.isEmpty()) {
             Toast.makeText(requireContext(), "请输入任务标题", Toast.LENGTH_SHORT).show()
@@ -249,32 +229,24 @@ class SecondFragment : Fragment() {
             return
         }
 
-        val reminderEnabled = binding.switchReminder.isChecked
-
         if (currentTask != null) {
             // 编辑模式：更新现有任务
             val updatedTask = currentTask!!.copy(
                 title = title,
-                description = description,
                 dueDate = selectedDateTime.time,
-                priority = selectedPriority,
-                category = category.ifEmpty { "其他" },
-                reminderEnabled = reminderEnabled
+                priority = selectedPriority
             )
             taskViewModel.updateTask(updatedTask)
-            Toast.makeText(requireContext(), "任务已更新 ✓", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "任务已更新", Toast.LENGTH_SHORT).show()
         } else {
             // 新建模式：创建新任务
             val newTask = Task(
                 title = title,
-                description = description,
                 dueDate = selectedDateTime.time,
-                priority = selectedPriority,
-                category = category.ifEmpty { "其他" },
-                reminderEnabled = reminderEnabled
+                priority = selectedPriority
             )
             taskViewModel.insertTask(newTask)
-            Toast.makeText(requireContext(), "任务已创建 ✓", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "任务已创建", Toast.LENGTH_SHORT).show()
         }
 
         findNavController().navigateUp()
