@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Priority colors -->
+    <color name="priority_low">#4CAF50</color>
+    <color name="priority_medium">#FF9800</color>
+    <color name="priority_high">#F44336</color>
+    <color name="priority_urgent">#9C27B0</color>
+
+    <!-- Material divider color -->
+    <color name="material_divider_color">#1F000000</color>
+
+    <!-- Time urgency colors -->
+    <color name="time_safe">#4CAF50</color>          <!-- Green: >3 days -->
+    <color name="time_warning">#FF9800</color>       <!-- Orange: 1-3 days -->
+    <color name="time_urgent">#F44336</color>        <!-- Red: <1 day -->
+    <color name="time_overdue">#D32F2F</color>       <!-- Dark Red: overdue -->
+
+    <!-- Card background colors with slight tints -->
+    <color name="card_bg_safe">#F8FFF8</color>       <!-- Very light green tint -->
+    <color name="card_bg_warning">#FFFAF5</color>    <!-- Very light orange tint -->
+    <color name="card_bg_urgent">#FFF8F8</color>     <!-- Very light red tint -->
+    <color name="card_bg_overdue">#FFEBEE</color>    <!-- Light red tint -->
+
+    <!-- Text colors for time indicators -->
+    <color name="text_time_safe">#2E7D30</color>     <!-- Dark green -->
+    <color name="text_time_warning">#F57C00</color>  <!-- Dark orange -->
+    <color name="text_time_urgent">#C62828</color>   <!-- Dark red -->
+    <color name="text_time_overdue">#B71C1C</color>  <!-- Very dark red -->
+
+    <!-- Modern UI colors -->
+    <color name="text_primary">#1A1A1A</color>
+    <color name="text_secondary">#666666</color>
+    <color name="text_tertiary">#999999</color>
+    <color name="card_stroke_color">#E0E0E0</color>
+    <color name="category_text_color">#5A67D8</color>
+
+    <!-- Gradient colors -->
+    <color name="gradient_start">#FFFFFF</color>
+    <color name="gradient_end">#FAFBFC</color>
+
+    <!-- Time remaining background colors -->
+    <color name="time_bg_safe">#4CAF50</color>
+    <color name="time_bg_warning">#FF9800</color>
+    <color name="time_bg_urgent">#F44336</color>
+    <color name="time_bg_overdue">#D32F2F</color>
+
+    <!-- Category background -->
+    <color name="category_bg">#E8EAFF</color>
+
+    <!-- Progress bar colors -->
+    <color name="progress_color">#5A67D8</color>
+    <color name="progress_bg_color">#E0E0E0</color>
+
+    <!-- 编辑页面新增颜色 -->
+    <color name="primary_color">#6366F1</color>
+    <color name="input_background">#F8FAFC</color>
+    <color name="card_stroke_light">#E2E8F0</color>
+    <color name="switch_track_color">#6366F1</color>
+
+    <!-- 渐变背景色 -->
+    <color name="background_gradient_start">#F8FAFC</color>
+    <color name="background_gradient_end">#EDF2F7</color>
+</resources>
